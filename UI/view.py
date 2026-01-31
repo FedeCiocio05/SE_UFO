@@ -1,3 +1,5 @@
+from idlelib.configdialog import changes
+
 import flet as ft
 from UI.alert import AlertManager
 
@@ -30,7 +32,7 @@ class View:
         self.txt_titolo = ft.Text(value="Avvistamenti UFO", size=30, weight=ft.FontWeight.BOLD)
 
         # Riga 1
-        self.dd_year = ft.Dropdown(label="Anno", width=200)
+        self.dd_year = ft.Dropdown(label="Anno", width=200, on_change = self.controller.scelta_anno)
         self.dd_shape = ft.Dropdown(label="Forma", width=200)
         self.pulsante_graph = ft.ElevatedButton(text="Crea Grafo", on_click=self.controller.handle_graph)
 
@@ -62,6 +64,8 @@ class View:
             self.lista_visualizzazione_2
         )
 
+        #richiamo controller
+        self.controller.populate_dd()
         self.page.update()
 
     def cambia_tema(self, e):
